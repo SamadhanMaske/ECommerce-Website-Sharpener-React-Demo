@@ -24,6 +24,10 @@
 }
 
 .navLinks span{
+    text-decoration: none;
+}
+
+.navLinks span{
     margin: 0px 10px;
     cursor: pointer;
 }

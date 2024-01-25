@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import styles from '../Styles/navbar.module.css'
 import { NavLink, Outlet } from 'react-router-dom'
 import { SiShopee } from "react-icons/si";
@@ -6,13 +5,13 @@ import { FaHome } from "react-icons/fa";
 import { FaShopify } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa";
 import { MdLogin } from "react-icons/md";
-import { useAuthValue } from '../AuthContext';
+import { useContext, useState } from 'react';
+import { AuthContext } from './Store/AuthContext';
+
 
 function Navbar() {
-
-    // const [isLoggedIn, signOut] = useAuthValue();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    const {isLoggedIn, signOut} = useContext(AuthContext);
+    
     return (
         <div>
             <div className={styles.navbarContainer}>
@@ -32,7 +31,7 @@ function Navbar() {
                             Home
                         </span>
                     </NavLink>
-                    {isLoggedIn && <NavLink to={"/myorders"}>
+                    {isLoggedIn && <NavLink to={"/myorder"}>
                         <span>
                             <FaShopify />
                             My Orders
@@ -53,7 +52,7 @@ function Navbar() {
                                 </> :
                                     <>
                                         <MdLogin />
-                                        <span>Signout</span>
+                                        <span onClick={signOut }>Signout</span>
                                     </>
                             }
                         </span>

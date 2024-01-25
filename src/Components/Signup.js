@@ -1,16 +1,16 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import styles from '../Styles/Signin.module.css'
-import { useAuthValue } from '../AuthContext';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from './Store/AuthContext';
 
 function Signup() {
 
     const nameRef = useRef();
-    const passwardRef = useRef();
+    const passwordRef = useRef();
     const emailRef = useRef();
 
     const navigate = useNavigate();
-    // const {createUser} = useAuthValue();
+    const {createUser} = useContext(AuthContext);
 
     async function handleSignup(e){
         e.preventDefault();
@@ -18,22 +18,22 @@ function Signup() {
         const data = {
             name: nameRef.current.value,
             email: emailRef.current.value,
-            passward: passwardRef.current.value
+            password: passwordRef.current.value
         }
 
-        // await createUser(data);
-        // navigate("/signin");
+        createUser(data);
+        navigate("/signin");
     }
 
     return (
         <div className={styles.container}>
             <div className={styles.inputForm}>
-                <h1>SignUn</h1>
+                <h1>SignUp</h1>
                 <form action='' onSubmit={handleSignup}>
                     <input type='text' placeholder='enter name...' required ref={nameRef} />
                     <input type='email' placeholder='enter email...' required ref={emailRef} />
-                    <input type='passward' placeholder='enter passward' required ref={passwardRef} />
-                    <button type='submit'>Signin</button>
+                    <input type='password' placeholder='enter password' required ref={passwordRef} />
+                    <button type='submit'>SignUp</button>
                 </form>
                 <br />
                 <span>

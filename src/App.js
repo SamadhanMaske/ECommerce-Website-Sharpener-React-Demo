@@ -1,11 +1,12 @@
-import { Fragment } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Signin from './Components/Signin';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Signup from './Components/Signup';
+import AuthProvider from './Components/Store/AuthProvider';
 
 function App() {
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -15,11 +16,13 @@ function App() {
         { path: "/signup", element: <Signup /> }
       ]
     }
-  ])
+  ]);
   return (
-    <Fragment>
-      <RouterProvider router={router} />
-    </Fragment>
+    <>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </>
   );
 }
 

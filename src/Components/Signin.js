@@ -1,26 +1,26 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import styles from '../Styles/Signin.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { useAuthValue } from './../AuthContext';
+import { AuthContext } from './Store/AuthContext';
 
 function Signin() {
 
     const emailRef = useRef();
-    const passwardRef = useRef();
-
+    const passwordRef = useRef();
     const navigate = useNavigate();
-    // const {signIn} = useAuthValue();
+    
+    const {signIn} = useContext(AuthContext);
 
     async function handleSignin(e){
         e.preventDefault();
 
         const data = {
             email: emailRef.current.value,
-            passward: passwardRef.current.value
+            password: passwordRef.current.value
         }
-
-        // const status = await signIn(data);
-        // {status?navigate("/"):navigate("/signin")}
+        console.log("From Signin.js data: ", data);
+        const status = await signIn(data);
+        {status?navigate("/"):navigate("/signin")}
     }
 
     return (
@@ -29,8 +29,8 @@ function Signin() {
                 <h1>SignIn</h1>
                 <form action='' onSubmit={handleSignin}>
                     <input type='email' placeholder='enter email...' required ref={emailRef}/>
-                    <input type='passward' placeholder='enter passward' required ref={passwardRef}/>
-                    <button type='submit'>Signin</button>
+                    <input type='password' placeholder='enter passward' required ref={passwordRef}/>
+                    <button type='submit'>SignIn</button>
                 </form>
                 <br />
                 <span>
