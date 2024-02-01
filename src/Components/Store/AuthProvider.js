@@ -3,10 +3,11 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { AuthContext } from './AuthContext';
 import { db } from '../../Configurations/FirebaseConfig';
 import { addDoc, collection, onSnapshot } from 'firebase/firestore';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 function AuthProvider({children}) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    //Who is logged in
     const [userLoggedIn, setUserLoggedIn] = useState(null);
     //List of users in our database
     const [userList, setUserList] = useState([]);
@@ -32,7 +33,7 @@ function AuthProvider({children}) {
         const index = userList.findIndex((user) => user.email === data.email);
 
         if (index !== -1) {
-            alert("Email already registered, try again or signin");
+            toast.error("Email already registered, try again or signin");
             return;
         }
 
@@ -44,7 +45,7 @@ function AuthProvider({children}) {
             orders: [],
 
         });
-        alert("User registered successfully");
+        toast.success("User registered successfully");
         console.log("User created ", data);
     }
 
@@ -52,7 +53,7 @@ function AuthProvider({children}) {
         const index = userList.findIndex((user) => user.email === data.email);
 
         if (index === -1) {
-            alert("Email is not registered, try again or signup");
+            toast.error("Email is not registered, try again or signup");
             return;
         }
         console.log("Signin function data ", data);
@@ -60,7 +61,7 @@ function AuthProvider({children}) {
         console.log("Signin function udata.password.password= ", data.password);
 
         if (userList[index].password === data.password) {
-            alert("Signin successfull...");
+            toast.success("Signin successfull...");
             setIsLoggedIn(true);
             setUserLoggedIn(userList[index]);
 
@@ -68,7 +69,7 @@ function AuthProvider({children}) {
             window.localStorage.setItem("index", JSON.stringify(userLoggedIn));
             return true;
         }else {
-            alert("Incorrect passward");
+            toast.error("Incorrect passward");
             return false;
         }
     }
@@ -79,15 +80,16 @@ function AuthProvider({children}) {
 
         setIsLoggedIn(false);
         setUserLoggedIn(null);
-        alert("Signout successful...");
+        toast.success("Signout successful...");
 
     }
 
-    const providerValues = { createUser, signIn, signOut, isLoggedIn, setIsLoggedIn, setUserLoggedIn };
+    const providerValues = { createUser, signIn, signOut, isLoggedIn, setIsLoggedIn, userLoggedIn, setUserLoggedIn };
 
     return (
         <Fragment>
             <AuthContext.Provider value={providerValues}>
+                <ToastContainer/>
                 {children}
             </AuthContext.Provider>
         </Fragment>

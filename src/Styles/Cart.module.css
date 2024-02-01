@@ -1,0 +1,176 @@
+.mainContainer{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.mainContainer > div{
+    width: 100%;
+    margin: 15px;
+
+}
+
+.header{
+    height: 60px;
+    background-color: #b2d3df70;
+    box-shadow: 1px 1px 8px 1px grey;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #57577a;
+    border-radius: 5px;
+
+}
+
+.header small, .cartDetails{
+    font-size: 1.2rem;
+    font-weight: 500;
+
+}
+
+
+.cartDetails{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.cartDetails > div{
+    margin: 10px;
+    padding: 5px;
+    text-align: center;
+
+}
+
+.cartDetails button{
+    margin-top: 10px;
+    color: white;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 5px;
+
+}
+
+.cartDetails button:hover{
+    background-color: rgb(118, 246, 86);
+
+}
+
+.removeAll{
+    background-color: red;
+}
+
+.purchaseAll{
+    background-color: blueviolet;
+}
+
+/* .itemContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 6%;
+} */
+
+.itemContainer{
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.cardContainer{
+    height: 400px;
+    width: 270px;
+    box-shadow: 0 0 2px 2px grey;
+    margin: 2%;
+    padding: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.imageContainer{
+    width: 100%;
+    height: 78%;
+
+}
+
+.imageContainer img{
+    width: 100%;
+    height: 100%;
+
+}
+
+.itemInfo{
+    width: 100%;
+    height: 22%;
+    
+}
+
+.namePrice{
+    display: flex;
+    height: 45%;
+    text-align: center;
+
+}
+
+.name{
+    text-align: left;
+    width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 80%;
+
+}
+
+.price{
+    width: 25%;
+    color: #0a0aff;
+    font-size: 700;
+    height: 80%;
+
+}
+
+.btnContainer{
+    height: 30%;
+}
+
+.btnContainer button{
+    width: 100%;
+    height: 100%;
+    border: none;
+
+}
+
+.quantity{
+    color: blueviolet;
+    font-weight: 600;
+}
+
+.minus{
+    color: red;
+}
+
+.plus{
+    color: blue;
+}
+
+.removeBtn{
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #fa0909 0%, #fa3131 51%, #f61212 100% );
+
+
+}
+
+.removeBtn:hover{
+    cursor: pointer;
+}

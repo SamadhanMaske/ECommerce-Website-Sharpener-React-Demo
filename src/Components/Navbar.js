@@ -5,7 +5,7 @@ import { FaHome } from "react-icons/fa";
 import { FaShopify } from "react-icons/fa6";
 import { FaCartPlus } from "react-icons/fa";
 import { MdLogin } from "react-icons/md";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from './Store/AuthContext';
 
 
@@ -22,15 +22,16 @@ function Navbar() {
                             AppName
                         </span>
                     </NavLink>
-                </div>
-
-                <div className={styles.navLinks}>
                     <NavLink to={"/"}>
                         <span>
                             <FaHome />
                             Home
                         </span>
                     </NavLink>
+                </div>
+
+                <div className={styles.navLinks}>
+                    
                     {isLoggedIn && <NavLink to={"/myorder"}>
                         <span>
                             <FaShopify />
